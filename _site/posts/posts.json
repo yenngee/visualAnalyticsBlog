@@ -1,5 +1,22 @@
 [
   {
+    "path": "posts/2021-05-28-dataviz-makeover-1/",
+    "title": "DataViz Makeover 1",
+    "description": "My DataViz Makeover 1. Based on the assignment [here](https://isss608.netlify.app/dataviz/dataviz1)",
+    "author": [
+      {
+        "name": "Ng Yen Ngee",
+        "url": "https://www.linkedin.com/in/ng-yen-ngee/"
+      }
+    ],
+    "date": "2021-05-28",
+    "categories": [],
+    "contents": "\r\n1 Critique of Visualization\r\nOriginal visualization can be seen below: \r\nBy Aesthetics\r\nNo.\r\nDescription of Critique\r\nConsequence/Remark\r\nA1\r\nThe font size of the overall title is smaller than the subtitle of each graph.\r\nThe attention is immediately drawn to each country’s names instead of the main title which would tell us what this graph is telling us.\r\nA2\r\nThere is no annotation to convey insights\r\nThe visualization just presents a bunch of numbers where audience are unable to make head or tails of.  e.g. there is a dip in both exports and imports for Mainland China during 2020 that is likely due to spreading of COVID and annotation should include events like this.\r\nA3\r\nGraphs is in a 2 by 3 grid.\r\nGives the impression that the category splitting the row is different from the category splitting the column which is not true. It also makes it difficult to compare information across countries.\r\nA4\r\nThere is no order in the placement of countries.\r\nMore insights can be derived if we ordered the data in a logical way.\r\nA5\r\nOverlapping of area chart colours makes it rather ugly and difficult to read\r\n\r\nBy Clarity\r\nNo.\r\nDescription of Critique\r\nConsequence/Remark\r\nC1\r\nThe width of the x-axis is all different for all countries.\r\nGives the wrong impression that some countries have more Export/Import based on area.\r\nC2\r\nThe range of the x-axis is different for Japan, and only shows 2020 on the x-axis\r\nGives the wrong impression that there is no trade in 2019.\r\nC3\r\nWithin a single subplot, the left and right y-axis have different ranges and scale, resulting in similar heights of area chart between Exports and Imports.\r\nGives the wrong impression that the amount of Import and Export are around the same for all countries. However, this may not be true.  E.g. for Hong Kong, Export ranges below 1 Million while Imports ranges above 4 Million.\r\nC4\r\nThe y-axis across all 6 countries has different scales and ranges resulting in similar heights of area charts across countries.\r\nGives the wrong impression that trade is consistent across all countries. However, if 2 countries are being compared it is apparent that this is not true.  E.g. Hong Kong vs Mainland China, Mainland China has higher amount of Import than Hong Kong\r\nC5\r\nThe x-axis and y-axis have no tick marks even through it is a quantitative scale.\r\nIt makes data difficult to read.\r\nC6\r\nArea charts used to represent Export and Import are overlapping.\r\nArea charts are best used for establishing part-to-whole relationship or to exaggerate change.\r\n2 Visualization Makeover\r\nProposed Design\r\nUsing a single y-axis\r\nThis overcomes the issues raised in C3, C4,\r\nUsing stacked area chart\r\nUsing Quarters\r\nProposed Visualization (link)\r\nStep by Step Guide\r\nLoading and Understanding the data\r\nThe Data obtained from the subsection of Merchandise Trade by Region/Market and was downloaded by clicking on the link Download all in Excel on the same web page.\r\nOpening the Excel file we see that there are 3 tabs. * Content – describes the content of the data in each page, hence we will not use this sheet. * T1 – Merchandise Imports * T2 – Merchandise Exports\r\nData Preperation\r\nUsing Tableau to Create Visualization\r\n3 Derived Insights\r\n\r\n\r\n\r\n",
+    "preview": {},
+    "last_modified": "2021-05-28T23:55:41+08:00",
+    "input_file": {}
+  },
+  {
     "path": "posts/2021-05-22-my-first-post/",
     "title": "My first post",
     "description": "Learning how to do R Markdown following lecture from prof.",
