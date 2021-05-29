@@ -116,7 +116,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["dataviz-makeover-1_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-1_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-1_files/distill-2.2.21/template.v2.js","dataviz-makeover-1_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-1_files/popper-2.6.0/popper.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-bundle.umd.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-light-border.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.umd.min.js","dataviz-makeover-1_files/webcomponents-2.0.0/webcomponents.js","img/original_viz.jpg","img/original_viz.png"]}
+  {"type":"character","attributes":{},"value":["dataviz-makeover-1_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-1_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-1_files/distill-2.2.21/template.v2.js","dataviz-makeover-1_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-1_files/popper-2.6.0/popper.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-bundle.umd.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-light-border.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.umd.min.js","dataviz-makeover-1_files/webcomponents-2.0.0/webcomponents.js","img/design_draft.jpg","img/design_draft.png","img/original_viz.jpg","img/step-A1_excel.jpg","img/step-A2_T1_bottom.jpg","img/step-A2_T1_top.jpg","img/step-B1_drag_and_drop.JPG","img/step-B2_filter_country.JPG","img/step-B2_filter_country_results.JPG","img/step-B3_area_chart.JPG","img/step-B4_change_time.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
   <!--/radix_placeholder_navigation_in_header-->
@@ -1478,7 +1478,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
 <div class="d-article">
 <h2 id="critique-of-visualization">1 Critique of Visualization</h2>
-<p>Original visualization can be seen below: <img src="img/original_viz.png" /></p>
+<p>Original visualization can be seen below: <img src="img/original_viz.jpg" /></p>
 <h3 id="by-aesthetics">By Aesthetics</h3>
 <table>
 <colgroup>
@@ -1570,17 +1570,39 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </table>
 <h2 id="visualization-makeover">2 Visualization Makeover</h2>
 <h3 id="proposed-design">Proposed Design</h3>
-<h4 id="using-a-single-y-axis">Using a single y-axis</h4>
-<p>This overcomes the issues raised in C3, C4,</p>
-<h4 id="using-stacked-area-chart">Using stacked area chart</h4>
-<h4 id="using-quarters">Using Quarters</h4>
+<p>Considering that we want to minimize changes made to the original visualization as much as possible, the visualization has been redesigned as follows:</p>
+<p><img src="img/design_draft.jpg" /></p>
+<p>Below I will discuss the various key changes that has been made and explain why the changes were made and which critique in the earlier section did these changes overcome:</p>
+<h4 id="keeping-area-chart-type-but-stacking-them-instead."><strong>Keeping area chart type but stacking them instead. </strong></h4>
+<p>As we are looking at Singapore’s top 6 merchandise trading partners and not just each countries’ export and import, it was decided to use stacked area chart to visualize the merchandise trade (sum of import and export) which shows the part to whole relationship well. Hence, we are also able to see the proportion of import and export relative to the sum of them like how Hong Kong has a very low import but actually has higher overall merchandise trade than that of Japan. This overcomes the issues raised in <strong><em>C6</em></strong> and <strong><em>A5</em></strong>.</p>
+<h4 id="using-a-single-y-axis."><strong>Using a single y-axis.</strong></h4>
+<p>One of the key confusing points in the original design was that the y-axis keeps changing for both imports and exports and for all six countries stated in <strong><em>C3</em></strong> and <strong><em>C4</em></strong>. Hence, in the proposed design, merchandise trade of each country shares the same y-axis on the left by placing all 6 countries on the same axis, dividing the visualization into 6 subplots horizontally instead of a 3 by 2 grid (discussed in <strong><em>A3</em></strong>). This also makes it easier to compare number across countries.</p>
+<h4 id="countries-merchandise-trade-are-ranked-in-descending-order"><strong>Countries’ merchandise trade are ranked in descending order</strong></h4>
+<p>We know the top 6 trading countries, but do we know the country with the highest merchandise trade? Do we know out of the 6 countries, which country has the lowest trade? This was one of the critique made in <strong><em>A4</em></strong> which we corrected by adding the order in which the countries are placed so that we can see this ranking at a single glance.</p>
+<h4 id="using-quarterly-data-instead-of-monthly-data"><strong>Using Quarterly data instead of monthly data</strong></h4>
+<p>Unfortunately, one drawback of using a single y-axis and comparing 6 countries like this in 6 horizontal subplots is that each subplot has limited x-axis space. If we were to show 2 years worth of monthly data, the level of detail shown by the area of chart would be too messy. Keeping in mind that we want to show Singapore’s top 6 trading partners across 2 years, it was decided that aggregating to quarterly data is sufficient to show just enough variation across time and yet not over complicate the visualization.</p>
+<h4 id="consistent-x-axis-range-in-each-subplot."><strong>Consistent x-axis range in each subplot.</strong></h4>
+<p>To solve <strong><em>C1</em></strong> and <strong><em>C2</em></strong>, we ensured that the axis in each subplot is of the same width, with the same range starting from 2019 Q1 to 2020 Q4.</p>
+<h4 id="other-fixes"><strong>Other fixes</strong></h4>
+<p>Other fixes were made such as</p>
+<ul>
+<li>Ensuring that the visualization title has the largest font (<strong><em>A1</em></strong>)</li>
+<li>Adding annotations referring to certain portions of the graph to deliver insights more effectively (<strong><em>A2</em></strong>)</li>
+<li>Ensuring that y-axis and x-axis all have tick marks (<strong><em>C5</em></strong>)</li>
+</ul>
 <h3 id="proposed-visualization-link">Proposed Visualization (link)</h3>
 <h3 id="step-by-step-guide">Step by Step Guide</h3>
 <h4 id="loading-and-understanding-the-data"><strong>Loading and Understanding the data</strong></h4>
 <p>The Data obtained from the subsection of <a href="https://www.singstat.gov.sg/find-data/search-by-theme/trade-and-investment/merchandise-trade/latest-data">Merchandise Trade by Region/Market</a> and was downloaded by clicking on the link Download all in Excel on the same web page.</p>
 <p>Opening the Excel file we see that there are 3 tabs. * Content – describes the content of the data in each page, hence we will not use this sheet. * T1 – Merchandise Imports * T2 – Merchandise Exports</p>
-<h4 id="data-preperation">Data Preperation</h4>
-<h4 id="using-tableau-to-create-visualization">Using Tableau to Create Visualization</h4>
+<p><img src="img/step-A1_excel.jpg" /> On the top and bottom of the tab, there are notes which we would need to remove in our data preparation step. The header row starts from 6th row. There is data with countries represented by row and monthly data represented by columns. Looking at the first few rows, there are also aggregated such as Total Merchandise and regional data such as Asia(Million Dollars) which we will need to remove. Across the columns, we would also only need to extract data from 2019 Jan to 2020 Dec. T2 has a similar structure as T1 and will be prepared in a similar way.</p>
+<p><img src="img/step-A2_T1_top.jpg" /></p>
+<p><img src="img/step-A2_T1_bottom.jpg" /></p>
+<h4 id="data-preparation"><strong>Data Preparation</strong></h4>
+<p>We will be using Tableau Prep Builder to prepare the data and this section will provide a step by step guide to do so. However, each step is explained carefully such that it can also be replicated using alternative means.</p>
+<h5 id="connect-to-data-source">Connect to Data Source</h5>
+<h4 id="create-visualization">Create Visualization</h4>
+<p>We will be using Tableau Desktop to create the visualization and this section will provide a step by step guide to do so.</p>
 <h2 id="derived-insights">3 Derived Insights</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
