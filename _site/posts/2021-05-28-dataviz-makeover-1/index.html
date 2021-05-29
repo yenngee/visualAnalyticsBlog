@@ -117,7 +117,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--/radix_placeholder_rmarkdown_metadata-->
   
   <script type="text/json" id="radix-resource-manifest">
-  {"type":"character","attributes":{},"value":["dataviz-makeover-1_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-1_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-1_files/distill-2.2.21/template.v2.js","dataviz-makeover-1_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-1_files/popper-2.6.0/popper.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-bundle.umd.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-light-border.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.umd.min.js","dataviz-makeover-1_files/webcomponents-2.0.0/webcomponents.js","img/design_draft.jpg","img/design_draft.png","img/original_viz.jpg","img/step-A1_excel.jpg","img/step-A2_T1_bottom.jpg","img/step-A2_T1_top.jpg","img/step-B1_drag_and_drop.JPG","img/step-B2_filter_country.JPG","img/step-B2_filter_country_results.JPG","img/step-B3_area_chart.JPG","img/step-B4_change_time.png"]}
+  {"type":"character","attributes":{},"value":["dataviz-makeover-1_files/anchor-4.2.2/anchor.min.js","dataviz-makeover-1_files/bowser-1.9.3/bowser.min.js","dataviz-makeover-1_files/distill-2.2.21/template.v2.js","dataviz-makeover-1_files/jquery-1.11.3/jquery.min.js","dataviz-makeover-1_files/popper-2.6.0/popper.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-bundle.umd.min.js","dataviz-makeover-1_files/tippy-6.2.7/tippy-light-border.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.css","dataviz-makeover-1_files/tippy-6.2.7/tippy.umd.min.js","dataviz-makeover-1_files/webcomponents-2.0.0/webcomponents.js","img/design_draft.jpg","img/design_draft.png","img/original_viz.jpg","img/step-A1_excel.jpg","img/step-A2_T1_bottom.jpg","img/step-A2_T1_top.jpg","img/step-A3_T1_final.JPG","img/step-B1_connect.jpg","img/step-B2_add_sheetdata.jpg","img/step-B2_data_interpret.JPG","img/step-B3_after_clean.jpg","img/step-B3_before_clean.JPG","img/step-B3_filter.jpg","img/step-B3_split.jpg","img/step-B4_after_pivot.jpg","img/step-B4_to_pivot.jpg","img/step-B5_after_pivot.jpg","img/step-B6_calculated_field.jpg","img/step-B6_calculated_field2.jpg","img/step-B7_final.jpg","img/step-B7_final_flow.JPG","img/step-C1_drag_and_drop.JPG","img/step-C2_filter_country.JPG","img/step-C2_filter_country_results.JPG","img/step-C3_area_chart.JPG","img/step-C4_change_time.png"]}
   </script>
   <!--radix_placeholder_navigation_in_header-->
 <meta name="distill:offset" content="../.."/>
@@ -2211,19 +2211,65 @@ document.addEventListener('DOMContentLoaded', function() {
 <li>Ensuring that y-axis and x-axis all have tick marks (<strong><em>C5</em></strong>)</li>
 </ul>
 <h3 id="proposed-visualization-link">Proposed Visualization (link)</h3>
-<h3 id="step-by-step-guide">Step by Step Guide</h3>
-<h4 id="loading-and-understanding-the-data"><strong>Loading and Understanding the data</strong></h4>
+<h2 id="step-by-step-guide">3. Step by Step Guide</h2>
+<p>In this portion, we will be running through the steps to create the final proposed visualization starting from loading and understanding the data, then we will run through what is done to prepare the data and finally creating the visualization on Tableau.</p>
+<h3 id="loading-and-understanding-the-data">Loading and Understanding the data</h3>
 <p>The Data obtained from the subsection of <a href="https://www.singstat.gov.sg/find-data/search-by-theme/trade-and-investment/merchandise-trade/latest-data">Merchandise Trade by Region/Market</a> and was downloaded by clicking on the link Download all in Excel on the same web page.</p>
 <p>Opening the Excel file we see that there are 3 tabs. * Content – describes the content of the data in each page, hence we will not use this sheet. * T1 – Merchandise Imports * T2 – Merchandise Exports</p>
 <p><img src="img/step-A1_excel.jpg" /> On the top and bottom of the tab, there are notes which we would need to remove in our data preparation step. The header row starts from 6th row. There is data with countries represented by row and monthly data represented by columns. Looking at the first few rows, there are also aggregated such as Total Merchandise and regional data such as Asia(Million Dollars) which we will need to remove. Across the columns, we would also only need to extract data from 2019 Jan to 2020 Dec. T2 has a similar structure as T1 and will be prepared in a similar way.</p>
-<p><img src="img/step-A2_T1_top.jpg" /></p>
-<p><img src="img/step-A2_T1_bottom.jpg" /></p>
-<h4 id="data-preparation"><strong>Data Preparation</strong></h4>
-<p>We will be using Tableau Prep Builder to prepare the data and this section will provide a step by step guide to do so. However, each step is explained carefully such that it can also be replicated using alternative means.</p>
-<h5 id="connect-to-data-source">Connect to Data Source</h5>
-<h4 id="create-visualization">Create Visualization</h4>
+<p>screenshot of top few rows of T1: <img src="img/step-A2_T1_top.jpg" /></p>
+<p>screenshot of bottom few rows of T1: <img src="img/step-A2_T1_bottom.jpg" /></p>
+<p>In our proposed visualization, we are looking at both exports and imports in a stacked area chart across time and country. Hence, we will need to prepare the data such that it is in a long format which makes it easier to manipulate in Tableau. The final form of the data should look something like this: <img src="img/step-A3_T1_final.JPG" /></p>
+<h3 id="data-preparation">Data Preparation</h3>
+<p>We will be using Tableau Prep Builder to prepare the data. Each step is explained carefully such that it can also be replicated using alternative means.</p>
+<h4 id="step-1-connect-to-data-source">Step 1: Connect to Data Source</h4>
+<p>After opening Tableau Prep Builder Software, we first need to connect to the Data Source. In this case, we will connect to the excel file that was previously downloaded.</p>
+<p><img src="img/step-B1_connect.jpg" /></p>
+<h4 id="step-2-add-data-to-flow">Step 2: Add Data to Flow</h4>
+<p>In the new interface, drag and drop T1 onto the working space on the right. Tableau Prep Builder will automatically load the data. However, we can see that it has also included the notes that we need to delete. Tableau has a handy button on the left called Use Data Interpreter which automatically extracts the table data without us having the manually delete the columns.</p>
+<p><img src="img/step-B2_data_interpret.JPG" /></p>
+<p>From there, if we right click on T1, we can choose various steps to treat the data. We will first clean the data.</p>
+<p><img src="img/step-B2_add_sheetdata.jpg" /></p>
+<h4 id="step-3a-clean-t1---filter-the-data">Step 3a: Clean T1 - filter the data</h4>
+<p>At this step, our data looks like this.</p>
+<p><img src="img/step-B3_before_clean.JPG" /></p>
+<p>As mentioned in Loading and Understanding the data section, we need to exclude the aggregated data. Selecting the first 7 rows until “European Union (Million Dollars)”, we can right click and select Exclude to exclude these data. At the same time, our visualization only include data from 2019 to 2020. Hence, we select the columns from all other dates and select remove. What is left is the Import data of all countries from 2019 to 2020.</p>
+<p>Note: at this point, we could possibly only keep data from the 6 countries identified in the original visualization. It was just a personal choice to keep all of the data for now, so that we can do other visualization with all of the trade data for fun. ;)</p>
+<p><img src="img/step-B3_filter.jpg" /></p>
+<h4 id="step-3b-clean-t1---split-column-to-get-country">Step 3b: Clean T1 - Split column to get country</h4>
+<p>If we look under variables, we know that it is in the format of “white space” + “country name” + “(Thousand Dollars)”. We want to only extract the country name, keeping in mind the values are in thousands. Hence, if we click the 3 dots on the column, we can do an automatic split which will extract country name. The original column is then removed as we do not need it and the new column name is changed to Country.</p>
+<p><img src="img/step-B3_split.jpg" /></p>
+<p>The data after this step should look like this: <img src="img/step-B3_after_clean.jpg" /></p>
+<h4 id="step-4-pivot-t1">Step 4: Pivot T1</h4>
+<p>Next, we have to convert all the data in each column and pivot them into rows. To do so, we first select all the columns except for Country, and click on Pivot Columns to Rows.</p>
+<p><img src="img/step-B4_to_pivot.jpg" /> This will automatically create a pivot step where they will keep the Country as it is and create row with each row containing the value found within the original column. We rename Pivot1 Names as “Date” and Pivot1 Values as “Import (in thousand)”</p>
+<p><img src="img/step-B4_after_pivot.jpg" /></p>
+<h4 id="repeat-steps-2-to-4-for-t2-except-to-rename-the-column-after-pivoting-as-export-in-thousand-since-t2-has-the-same-structure-as-t1.">Repeat steps 2 to 4 for T2, except to rename the column after pivoting as ‘Export (in thousand)’ since T2 has the same structure as T1.</h4>
+<h4 id="step-5-join-pivoted-t1-and-pivoted-t2">Step 5: Join Pivoted T1 and Pivoted T2</h4>
+<p>Now we would like to combine the data set. There are different ways of doing this. However, I chose to inner join the two data sets on Country and Date. This means that the data left are countries that must have both import and export throughout the period of 2019 and 2020.</p>
+<p>To do this, we simply drag Pivot 2 over Pivot 1 under the join option which will appear when you hover over it. This will be the result after removing the duplicated columns of Date and Country:</p>
+<p><img src="img/step-B5_after_pivot.jpg" /></p>
+<p>Note: a manual check confirms that the 6 countries that we are concerned with is part of this data set.</p>
+<h4 id="step-6-clean">Step 6: Clean</h4>
+<p>At this point, it is easy to convert the Import(in thousands) and Export(in thousands) to the values multiply by 1000. Clicking the 3 dots, we select Create Calculated Field, then Custom Calculation.</p>
+<p><img src="img/step-B6_calculated_field.jpg" /></p>
+<p>We’ll come to this pop up where we can key in our new column. We will follow the following formulas:</p>
+<ul>
+<li>Export = [Export(in thousands)] * 1000</li>
+<li>Import = [Import(in thousands)] * 1000</li>
+</ul>
+<p><img src="img/step-B6_calculated_field2.jpg" /></p>
+<p>We remove the old columns and select the 2 new columns (Import &amp; Export) and pivot them again.</p>
+<h4 id="step-7-pivot-final-clean">Step 7: Pivot + Final Clean</h4>
+<p>We are very close to the final table that we need. We just need to do a final check on the column name data type and change them where necessary:</p>
+<p><em>column name change: + Pivot1 Name to Trade Type + Pivot1 Value to Amount </em>data type change: + Date: from string to date type</p>
+<p>Here is the final table: <img src="img/step-B7_final.jpg" /></p>
+<p>In the work space, we can also see the following work flow: <img src="img/step-B7_final_flow.JPG" /></p>
+<h4 id="step-8-output">Step 8: Output</h4>
+<p>We could create an output node to output the data. However, Tableau Data Prep allows us to have a shortcut. By right-click on the last node and selecting Preview in Tableau Desktop, we can create the visualization directly.</p>
+<h3 id="create-visualization">Create Visualization</h3>
 <p>We will be using Tableau Desktop to create the visualization and this section will provide a step by step guide to do so.</p>
-<h2 id="derived-insights">3 Derived Insights</h2>
+<h2 id="derived-insights">4 Derived Insights</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
