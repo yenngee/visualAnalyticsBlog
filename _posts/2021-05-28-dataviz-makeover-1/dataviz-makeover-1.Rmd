@@ -8,19 +8,20 @@ author:
 date: 05-28-2021
 output:
   distill::distill_article:
-    self_contained: false
+    toc: true
+    theme: theme.css
 ---
 
-
-{r setup, include=FALSE}
+```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
-
+```
 
 ## 1 Critique of Visualization 
 
 Original visualization can be seen below: 
 ![](img/original_viz.jpg)
 
+The original visualization has its own flaws. We will be critiquing them below: 
 
 ### By Aesthetics 
 
@@ -108,12 +109,12 @@ In our proposed visualization, we are looking at both exports and imports in a s
 ### Data Preparation
 We will be using Tableau Prep Builder to prepare the data. Each step is explained carefully such that it can also be replicated using alternative means. 
 
-#### Step 1: Connect to Data Source
+#### **Step 1: Connect to Data Source**
 After opening Tableau Prep Builder Software, we first need to connect to the Data Source. In this case, we will connect to the excel file that was previously downloaded.
 
 ![](img/step-B1_connect.jpg)
 
-#### Step 2: Add Data to Flow
+#### **Step 2: Add Data to Flow**
 In the new interface, drag and drop T1 onto the working space on the right. Tableau Prep Builder will automatically load the data. However, we can see that it has also included the notes that we need to delete. Tableau has a handy button on the left called Use Data Interpreter which automatically extracts the table data without us having the manually delete the columns. 
 
 ![](img/step-B2_data_interpret.JPG)
@@ -122,7 +123,7 @@ From there, if we right click on T1, we can choose various steps to treat the da
 
 ![](img/step-B2_add_sheetdata.jpg)
 
-#### Step 3a: Clean T1 - filter the data 
+#### **Step 3a: Clean T1 - filter the data **
 At this step, our data looks like this. 
 
 ![](img/step-B3_before_clean.JPG)
@@ -134,7 +135,7 @@ Note: at this point, we could possibly only keep data from the 6 countries ident
 ![](img/step-B3_filter.jpg)
 
 
-#### Step 3b: Clean T1 - Split column to get country 
+#### **Step 3b: Clean T1 - Split column to get country** 
 
 If we look under variables, we know that it is in the format of "white space" + "country name" + "(Thousand Dollars)".
 We want to only extract the country name, keeping in mind the values are in thousands. Hence, if we click the 3 dots on the column, we can do an automatic split which will extract country name. The original column is then removed as we do not need it and the new column name is changed to Country.
@@ -144,7 +145,7 @@ We want to only extract the country name, keeping in mind the values are in thou
 The data after this step should look like this: 
 ![](img/step-B3_after_clean.jpg)
 
-#### Step 4: Pivot T1
+#### **Step 4: Pivot T1**
 Next, we have to convert all the data in each column and pivot them into rows. To do so, we first select all the columns except for Country, and click on Pivot Columns to Rows.
 
 ![](img/step-B4_to_pivot.jpg)
@@ -154,7 +155,7 @@ This will automatically create a pivot step where they will keep the Country as 
 
 #### Repeat steps 2 to 4 for T2, except to rename the column after pivoting as 'Export (in thousand)' since T2 has the same structure as T1. 
 
-#### Step 5: Join Pivoted T1 and Pivoted T2
+#### **Step 5: Join Pivoted T1 and Pivoted T2**
 Now we would like to combine the data set. There are different ways of doing this. However, I chose to inner join the two data sets on Country and Date. This means that the data left are countries that must have both import and export throughout the period of 2019 and 2020. 
 
 To do this, we simply drag Pivot 2 over Pivot 1 under the join option which will appear when you hover over it. This will be the result after removing the duplicated columns of Date and Country: 
@@ -164,7 +165,7 @@ To do this, we simply drag Pivot 2 over Pivot 1 under the join option which will
 Note: a manual check confirms that the 6 countries that we are concerned with is part of this data set.
 
 
-#### Step 6: Clean 
+#### **Step 6: Clean **
 At this point, it is easy to convert the Import(in thousands) and Export(in thousands) to the values multiply by 1000.
 Clicking the 3 dots, we select Create Calculated Field, then Custom Calculation. 
 
@@ -179,7 +180,7 @@ We'll come to this pop up where we can key in our new column. We will follow the
 
 We remove the old columns and select the 2 new columns (Import & Export) and pivot them again. 
 
-#### Step 7: Pivot + Final Clean
+#### **Step 7: Pivot + Final Clean**
 We are very close to the final table that we need. We just need to do a final check on the column name data type and change them where necessary: 
 
 *column name change:
@@ -194,14 +195,14 @@ Here is the final table:
 In the work space, we can also see the following work flow: 
 ![](img/step-B7_final_flow.jpg)
 
-#### Step 8: Output
+#### **Step 8: Output**
 We could create an output node to output the data. However, Tableau Data Prep allows us to have a shortcut. By right-click on the last node and selecting Preview in Tableau Desktop, we can create the visualization directly. 
 
 ### Create Visualization 
 We will be using Tableau Desktop to create the visualization and this section will provide a step by step guide to do so.
 Before we begin, it is always good to have cursory check on the data type. We see that Country, Date and Trade Type are dimensions while Amount is in Measure.
 
-#### Step 1: 
+#### **Step 1: **
 The first step is to drag and drop the data into our graph. 
 
 * Columns: we drag Country and Date
@@ -211,7 +212,7 @@ Automatically, Tableau calculates the Sum of the Amount which is exactly what we
 
 ![](img/step-C1_drag_and_drop.jpg)
 
-#### Step 2: 
+#### **Step 2:** 
 We can see from the screenshot above there are too many countries. Hence, we need to filter the data by Country.
 Drag and drop Country onto the Filter card next to the graph. A window will pop-up (see screenshot below). From there we will manually select the top 6 countries: United States, Malaysia, Hong Kong, Japan, Mainland China and Taiwan. 
 
@@ -220,17 +221,17 @@ Drag and drop Country onto the Filter card next to the graph. A window will pop-
 Results will look like this: 
 ![](img/step-C2_filter_country_after.jpg)
 
-#### Step 3:
+#### **Step 3:**
 Now we have line charts of each countries' total trade merchandise. However, we would like to split them into Import and Export. We drag Trade Type and drop them in colour. Tableau will split the data to 2 lines. 
 
 ![](img/step-C3_trade_type.jpg)
 
-#### Step 4:
+#### **Step 4:**
 Tableau automatically churns out line graphs for us. However, following our proposed design, we want an area chart. On the left side under Marks, we can select Area in the drop down to turn this into an area chart. 
 
 ![](img/step-C4_area_chart.jpg)
 
-#### Step 5: 
+#### **Step 5: **
 This shows the yearly data for each country but we want quarterly data. Hence clicking on the triangle in the Year(Date) on date, we can select Quarter from the list. Note that we choose the Quarter in the lower section, this would give a measure rather than a dimension. This means that the area chart would be continuous within each countries' subplot. 
 
 
@@ -240,7 +241,7 @@ This is the result:
 ![](img/step-C5_result.jpg)
 
 
-#### step 6: 
+#### **step 6: **
 Now we have the foundation of the visualization. Let's sort them in descending order. Under the Filters card, we click the triangle button on Country and select sort. A window will pop-up and we need to select such that we are sorting by Field, in Descending Order, using the Field Name: Amount with Aggregation: Sum. 
 
 
@@ -249,7 +250,7 @@ Now we have the foundation of the visualization. Let's sort them in descending o
 This is the result: 
 ![](img/step-C6_result.jpg)
 
-#### Step 7: 
+#### **Step 7: **
 Let us now adjust the axis. 
 For the y-axis, the values are in Billions with horizontal grid lines. All we need to do is to add the units to indicate dollars. So we right-click on the y-axis, and select format in the drop down. The formatting pane will appear on the left. Since we are formatting the Axis, we do not change the tab. Under the scale, we can format the Number selecting Currency [Custom]: 
 
@@ -261,7 +262,7 @@ The changes can be seen immediately on the y-axis:
 ![](img/step-C7_yaxis.jpg)
 
 
-#### Step 8: 
+#### **Step 8: **
 Formatting x-axis is slightly more tricky. Due to the limited space, we face the following issues for each subplot: 
 
 * not able to display label for all quarters. (i.e. cannot use 2019 Q1, 2019 Q2,...,  2020 Q4)
@@ -306,7 +307,7 @@ This is the little trick to label the year in the x-axis since the title will al
 Now we have a good x-axis with consistent width, consistent tick marks, sufficient labels. This is the end result: 
 ![](img/step-C8_results.jpg)
 
-#### Step 9:
+#### **Step 9:**
 Next we want to add circles to the total merchandise trade to indicate the points more clearly. Unfortunately, Tableau does not provide the option of adding shapes or marks to the individual points for area charts unlike line chart. Hence, we need to work around it by using dual axis. 
 
 First, we drag Amount to the right side of the chart until we see a dotted line. This will duplicate the same chart only with the y-axis on the right this time. If we look at the card under Marks, there is now additional cards. We pick the second one and make the following changes: 
@@ -319,7 +320,7 @@ First, we drag Amount to the right side of the chart until we see a dotted line.
 The results will be something like this: 
 ![](img/step-C9_add_circles.jpg)
 
-#### Step 10: 
+#### **Step 10: **
 Let us be a bit more specific with our titles. 
 For the title at the y-axis, let us rename it as "Merchandise Trade Amount"
 For the Country at the top, it is rather redundant and so we will remove it. 
@@ -333,17 +334,47 @@ y-axis title Format: Tableau Book, size 9, colour html: #555555
 The results will be something like this: 
 ![](img/step-C10_results.jpg)
 
-#### Step 11 
-Now to add annotations. 
-we want the annotation to point to several arrows. Unfortunately Tableau has yet to have this function. Hence, to achieve this the trick is to create multiple annotations from the different points of concern, thereafter overlapping the boxes so that the lines point towards the same annotation. Then we just need to format the boxes and arrow such that they are consistent. 
-We use dotted line with an open arrow and a box that has no shading. 
+#### **Step 11 **
+Now to add annotations and reference lines 
+Right-click on the white space to select annotations, and then Area, will pop-up a window for editing the annotation.
+For this project, we select `Font` = "Tableau Book" and `Font Size` = 9. We place the annotations in areas where the content of the annotations makes the most sense, taking into consideration the white spaces in the visualization. 
 
-![](img/step-C11_format.jpg)
+
+![](img/step-C11_annotate.jpg)
+
+One unique even that happened in 2020 is the spreading of COVID, which affected the whole world. To highlight that period, we added a reference band. 
+On the x-axis, right click to select `Add Reference Line`. A window will pop-up. As we would like to highlight a segment for each country, we select `Band`, `Per Pane`, ensuring that the date values in `Band From` is "1/1/2020" and date values in `Band To` is "1/4/2020". Next, we edit the `Label` to `Custom`, entering "Covid Worsen in SG", putting the `Label` to `None` under `Band To` so that only one label will appear.
+
+![](img/step-C11_ref_band.jpg)
+
+#### **and we are done!**
 
 ## 4 Derived Insights
 
 ### Insight 1
+Singapore's top 6 merchandise trading partners are as follows, ranked in descending order: 
+
+1. Mainland China
+2. Malaysia 
+3. United States 
+4. Taiwan 
+5. Hong Kong
+6. Japan
+
+This ranking does not surprise us. As the [world's manufactoring superpower](https://www.statista.com/chart/20858/top-10-countries-by-share-of-global-manufacturing-output/) and given geographical proximity, it is natural for China to become the highest merchandise trading partner of Singapore. This is followed by Malaysia, just by virtue of the fact that Singapore and Malaysia are neighbours and transporting goods are made convenient. The United States comes a close third as the [third largest global merchandise exporter](https://www.statista.com/topics/1308/trade-in-the-us/#:~:text=In%202018%2C%20the%20United%20States,the%20world's%20total%20export%20trade.). Followed by Taiwan, Hong Kong and Japan which are all in Asia. It is also interesting to note that all 6 countries have [Free Trade Agreements](https://www.mti.gov.sg/-/media/MTI/improving-trade/FTAs/All-you-need-to-know-about-SG-FTAs-and-DEAs.pdf) with Singapore. 
+
+Even though there is a clear ranking, we can also see from the visualization that there is no one country's trade that exceeds other countries' trade by a large proportion which implies that Singapore does not solely rely on a single country for imports and exports. 
+
 
 ### Insight 2
+If we observe the proportions of the export and imports in the visualization, we can see an exception where Singapore's trade exports with Hong Kong is at least 10 times bigger than that of imports resulting in a large merchandise trade surplus. (This only occurs with Hong Kong and not with any of the other 6 countries.) It seems that Hong Kong is at the disadvantage here, however, knowing that Hong Kong has close relations with Singapore, it is likely that Hong Kong benefits from Singapore through means other than merchandise trading. 
+
+[Notes about trade](https://www.thebalance.com/balance-of-trade-definition-favorable-vs-unfavorable-3306261): 
++ Trade surplus (positive trade balance) -> when exports exceed imports 
++ Trade deficit (Negative trade balance) -> when exports are less than imports 
++ Trade surplus is harmful when government uses protectionism
++ Otherwise, most countries will strive for Trade surplus 
+
 
 ### Insight 3
+In 2020 Q1-Q2 was when COVID situation worsened in Singapore, resulting in circuit breaker where many work places had to be shut down for 2 months except for essential services. It is expected that [trade (especially exports) fall](https://www.channelnewsasia.com/news/business/singapore-exports-q3-third-quarter-oil-nodx-13619218) during this period. This is apparent for Mainland China and Malaysia where we observe a relatively larger dip in trade in this period. There is a slight decrease in trade during this period for the other countries except for Taiwan and it could be that the goods that Singapore trade with Taiwan remains unaffected by the COVID situation. 
