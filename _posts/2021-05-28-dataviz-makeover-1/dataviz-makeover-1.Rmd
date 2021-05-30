@@ -235,11 +235,13 @@ We are very close to the final table that we need. We just need to do a final ch
   + "Date": from string to date type 
 
 Here is the final table: 
+
 ```{r} 
 knitr::include_graphics("img/step-B7_final.jpg")
 ```
 
 In the work space, we can also see the following work flow: 
+
 ```{r} 
 knitr::include_graphics("img/step-B7_final_flow.jpg")
 ```
