@@ -16,10 +16,33 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+<style>
+html {
+  scroll-behavior: smooth;
+}
+d-article {
+    contain: none;
+  }
+#TOC {
+  position: fixed;
+  z-index: 50;
+  background: white;
+  }
+
+@media screen and (max-width: 900px) {
+#TOC {
+    position: relative;
+  }
+}
+</style>
+
 ## 1 Critique of Visualization 
 
 Original visualization can be seen below: 
-![](img/original_viz.jpg)
+
+```{r fig.cap="Original Visualization", out.extra="class=external"}
+knitr::include_graphics("img/original_viz.jpg")
+```
 
 The original visualization has its own flaws. We will be critiquing them below: 
 
@@ -54,7 +77,7 @@ Considering that we want to minimize changes made to the original visualization 
 Below I will discuss the various key changes that has been made and explain why the changes were made and which critique in the earlier section did these changes overcome: 
 
 #### **Keeping area chart type but stacking them instead. **
-As we are looking at Singapore's top 6 merchandise trading partners and not just each countries' export and import, it was decided to use stacked area chart to visualize the merchandise trade (sum of import and export) which shows the part to whole relationship well. Hence, we are also able to see the proportion of import and export relative to the sum of them like how Hong Kong has a very low import but actually has higher overall merchandise trade than that of Japan. This overcomes the issues raised in **_C6_** and **_A5_**.
+As we are looking at Singapore's top 6 merchandise trading partners and not just each countries' export and import, it was decided to use stacked area chart to visualize the merchandise trade (sum of import and export) which shows the part to whole relationship well. Hence, we are also able to see the proportion of import and export relative to the sum of them like how Hong Kong has a very low import but actually has higher overall merchandise trade than that of Japan. This overcomes the issues raised in **_C6_** and [**_A5_**](#by-aesthetics).
 
 #### **Using a single y-axis.**
 One of the key confusing points in the original design was that the y-axis keeps changing for both imports and exports and for all six countries stated in **_C3_** and **_C4_**. Hence, in the proposed design, merchandise trade of each country shares the same y-axis on the left by placing all 6 countries on the same axis, dividing the visualization into 6 subplots horizontally instead of a 3 by 2 grid (discussed in **_A3_**).  This also makes it easier to compare number across countries.
@@ -96,15 +119,20 @@ Opening the Excel file we see that there are 3 tabs.
 ![](img/step-A1_excel.jpg)
 On the top and bottom of the tab, there are notes which we would need to remove in our data preparation step. The header row starts from 6th row. There is data with countries represented by row and monthly data represented by columns. Looking at the first few rows, there are also aggregated such as Total Merchandise and regional data such as Asia(Million Dollars) which we will need to remove. Across the columns, we would also only need to extract data from 2019 Jan to 2020 Dec. T2 has a similar structure as T1 and will be prepared in a similar way. 
 
-screenshot of top few rows of T1: 
-![](img/step-A2_T1_top.jpg)
+```{r fig.cap="screenshot of top few rows of T1", out.extra="class=external"}
+knitr::include_graphics("img/step-A2_T1_top.jpg")
+```
 
 
-screenshot of bottom few rows of T1:
-![](img/step-A2_T1_bottom.jpg)
+```{r fig.cap="screenshot of bottom few rows of T1", out.extra="class=external"}
+knitr::include_graphics("img/step-A2_T1_bottom.jpg")
+```
 
 In our proposed visualization, we are looking at both exports and imports in a stacked area chart across time and country. Hence, we will need to prepare the data such that it is in a long format which makes it easier to manipulate in Tableau. The final form of the data should look something like this: 
-![](img/step-A3_T1_final.JPG)
+
+```{r}
+knitr::include_graphics("img/step-A3_T1_final.JPG")
+```
 
 ### Data Preparation
 We will be using Tableau Prep Builder to prepare the data. Each step is explained carefully such that it can also be replicated using alternative means. 
