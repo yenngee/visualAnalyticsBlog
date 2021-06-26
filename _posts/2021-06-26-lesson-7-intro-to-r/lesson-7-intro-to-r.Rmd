@@ -2,12 +2,13 @@
 title: "Lesson 7: Intro to R"
 author:
   - name: Ng Yen Ngee
+    url: https://www.linkedin.com/in/ng-yen-ngee/
 date: 06-26-2021
 output:
-  html_document:
-    toc: TRUE
-    toc_float: TRUE
-    theme: "lumen" 
+  distill::distill_article:
+    toc: true
+    toc_float: true
+    theme: theme.css
 ---
 
 ```{r setup, include=FALSE}
@@ -50,7 +51,7 @@ The data are year end examination grades of cohort of Primary 3 students. Each s
 # Simple visualizations using ggplot2
 ggplot 2 provides a very systematic way of creating visualizations.
 
-```{r grammar_of_graphics}
+```{r grammar_of_graphics, echo=FALSE}
 knitr::include_graphics("img/grammar_of_graphics.png")
 ```
 
@@ -157,7 +158,7 @@ exam_data %>%
 
 Difference between ggplot2 and ggiraph: 
 
-```{r diff_ggplot_ggirph}
+```{r diff_ggplot_ggirph, echo=FALSE}
 knitr::include_graphics("img/diff_ggplot2_ggiraph.JPG")
 ```
 
